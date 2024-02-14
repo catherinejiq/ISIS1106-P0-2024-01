@@ -65,6 +65,7 @@ def analizar_programa(lineas_programa):
 
 # Función principal
 def main():
+    # Leer el archivo de entrada que contiene el programa del robot
     ruta_archivo = input("Ingrese la ruta al archivo del programa del robot: ")
     try:
         with open(ruta_archivo, 'r') as archivo:
