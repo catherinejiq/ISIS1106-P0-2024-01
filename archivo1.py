@@ -1,7 +1,7 @@
 import re
 import os.path
 
-# Función para recuperar el contenido de un archivo de instrucciones
+# Función para leer un archivo y retornar su contenido
 def recuperar_contenido_archivo(ubi_archivo: str):
     contenido = ""
     if os.path.isfile(ubi_archivo):
@@ -13,16 +13,14 @@ def recuperar_contenido_archivo(ubi_archivo: str):
 
     return contenido
 
-# Variables globales para almacenar variables y funciones definidas
 variables_definidas = {}
 funciones_definidas = {}
 
-# Expresiones regulares para hacer coincidir diferentes partes de los comandos
 VAR_DEF_REGEX = r'\(defvar\s+([a-zA-Z][a-zA-Z0-9]*)\s+([a-zA-Z0-9]+)\)'
 FUN_DEF_REGEX = r'\(defun\s+([a-zA-Z][a-zA-Z0-9]*)\s*\(([^)]*)\)\s*(.*?)\)'
 FUN_CALL_REGEX = r'\(([a-zA-Z][a-zA-Z0-9]*)\s+([^)]*)\)'
 
-# Función para analizar la definición de variable
+
 def analizar_definicion_variable(comando):
     coincidencia = re.match(VAR_DEF_REGEX, comando)
     if coincidencia:
@@ -31,7 +29,7 @@ def analizar_definicion_variable(comando):
         return True
     return False
 
-# Función para analizar la definición de función
+
 def analizar_definicion_funcion(comando):
     coincidencia = re.match(FUN_DEF_REGEX, comando)
     if coincidencia:
@@ -41,7 +39,7 @@ def analizar_definicion_funcion(comando):
         return True
     return False
 
-# Función para analizar la llamada de función
+
 def analizar_llamada_funcion(comando):
     coincidencia = re.match(FUN_CALL_REGEX, comando)
     if coincidencia:
@@ -58,14 +56,15 @@ def analizar_programa(lineas_programa):
     for linea in lineas_programa:
         comando = linea.strip()
         if comando:
-            if not (analizar_definicion_variable(comando) or analizar_definicion_funcion(comando) or analizar_llamada_funcion(comando)):
+            if not (analizar_definicion_variable(comando) or 
+                    analizar_definicion_funcion(comando) or 
+                    analizar_llamada_funcion(comando)):
                 print("no")
                 return
     print("yes")
 
 # Función principal
 def main():
-    # Leer el archivo de entrada que contiene el programa del robot
     ruta_archivo = input("Ingrese la ruta al archivo del programa del robot: ")
     try:
         with open(ruta_archivo, 'r') as archivo:
