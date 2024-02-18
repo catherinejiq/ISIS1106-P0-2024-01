@@ -2,24 +2,28 @@
     (move-dir 1 :north)
     (null)
 )
+
 (if (not (blocked?))
     (move 1)
     (null)
     (turn :left)
 )
+
 (defvar one 1)
+
 (defun foo (c p)
     (put :chips c)
     (put :balloons p)
     (move rotate)
 )
-(foo 1)
+
 (defun goend ()
     (if (not (blocked?))
         ((move one) (goend))
         (null)
     )
 )
+
 (defun fill ()
     (repeat Spaces
         (if (not (isZero? myChips))
@@ -27,7 +31,5 @@
         )
     )
 )
-(defun pickAllB ()
-    (pick :balloons balloonsHere)
-)
+
 (run-dirs :left :up :left :down :right)
