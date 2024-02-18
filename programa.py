@@ -309,17 +309,6 @@ class RobotLanguageParser:
 
         block = parts[1]
 
-        
-
-def check_robot_program(program):
-    parser = RobotLanguageParser()
-    return parser.check_syntax(program)
-
-
-def check_robot_program(program):
-    parser = RobotLanguageParser()
-    return parser.check_syntax(program)
-
 
 def check_robot_program(program):
     parser = RobotLanguageParser()
